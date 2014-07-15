@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- Console output -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<param name="threshold" value="ERROR"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss.SSS} %t %C{1} %-5p %m%n"/>
+		</layout>
+	</appender>
+
+	<!-- TOMCAT System output -->
+	<appender name="SYSTEM" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- File setting -->
+		<param name="file" value="/home/npo/web/logws/npo_web_sys.log" />
+		<!-- If log file is existed, append to log file -->
+		<param name="append" value="true" />
+		<param name="datePattern" value="'.'yyyy-MM-dd-HH" />
+		<param name="threshold" value="INFO"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss.SSS} %t %C{1} %-5p %m%n"/>
+		</layout>
+	</appender>
+	
+	<!-- NPO system output -->
+	<appender name="NPOWEB" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- File setting -->
+		<param name="file" value="/home/npo/web/logws/npo_web.log" />
+		<!-- If log file is existed, append to log file -->
+		<param name="append" value="true" />
+		<param name="datePattern" value="'.'yyyy-MM-dd-HH" />
+		<param name="threshold" value="INFO"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss.SSS}000 %t %C{1} %-5p %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- Alert log output -->
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+	    <!-- File setting -->
+		<param name="file" value="/home/npo/web/logws/npo_alert.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy/MM/dd HH:mm:ss.SSS} %t %C{1} %-5p %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelMatchFilter">
+			<!-- Log level setting (Fix "ERROR") -->
+			<!-- Because this level is used for npo_alert.log, do not edit  -->
+			<param name="LevelToMatch" value="INFO" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+		<filter class="org.apache.log4j.varia.DenyAllFilter" />
+	</appender>
+
+	<category name="com.osp.npo" additivity="false">
+		<priority value="INFO" />
+		<appender-ref ref="NPOWEB" />
+		<appender-ref ref="ERROR" />
+	</category>
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="SYSTEM" />
+	</root>
+
+</log4j:configuration>

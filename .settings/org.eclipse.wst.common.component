@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="npo_ws">
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/javaSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/webservice"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/announcement"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/common"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/prevent"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/admin"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/connection"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/diagnostic"/>
+        <property name="context-root" value="npo_ws"/>
+        <property name="java-output-path" value="/npo_ws/build/classes"/>
+    </wb-module>
+</project-modules>

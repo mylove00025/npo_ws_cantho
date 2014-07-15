@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://npo.osp.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://npo.osp.com" xmlns:intf="http://npo.osp.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://npo.osp.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <element name="synchronizeDB">
+    <complexType>
+     <sequence>
+      <element name="clientInfo" type="impl:WebserviceInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="WebserviceInfo">
+    <sequence>
+     <element name="account" nillable="true" type="xsd:string"/>
+     <element name="authenticationCode" nillable="true" type="xsd:string"/>
+     <element name="authenticationId" nillable="true" type="xsd:string"/>
+     <element name="contentInfoList" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+     <element name="dataIdList" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="synchronizeDBResponse">
+    <complexType>
+     <sequence>
+      <element name="synchronizeDBReturn" type="impl:WebserviceInfo"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://npo.osp.com"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="synchronizeDBResponse">
+
+      <wsdl:part element="impl:synchronizeDBResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="synchronizeDBRequest">
+
+      <wsdl:part element="impl:synchronizeDB" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="NpoWS">
+
+      <wsdl:operation name="synchronizeDB">
+
+         <wsdl:input message="impl:synchronizeDBRequest" name="synchronizeDBRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:synchronizeDBResponse" name="synchronizeDBResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="NpoWSSoapBinding" type="impl:NpoWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="synchronizeDB">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="synchronizeDBRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="synchronizeDBResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="NpoWSService">
+
+      <wsdl:port binding="impl:NpoWSSoapBinding" name="NpoWS">
+
+         <wsdlsoap:address location="http://localhost:8080/npo_ws/services/NpoWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
